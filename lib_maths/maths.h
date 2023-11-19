@@ -6,6 +6,7 @@
 #include <iostream> // std::cout, std::fixed
 #include <sstream>
 #include <vector>
+#include <cstdint>
 
 namespace sf {
 
@@ -47,13 +48,13 @@ template <typename T, typename U> Vector2<T> Vcast(const Vector2<U>& v) {
   return Vector2<T>(static_cast<T>(v.x), static_cast<T>(v.y));
 };
 
-static double deg2rad(double degrees) {
-  return degrees * 4.0 * atan(1.0) / 180.0;
+static double degrees(double radians) {
+    return radians * 180.0 / (4.0 * atan(1.0));
 }
 
 template <typename T>
-Vector2<T> rotate(const Vector2<T>& v, const double degrees) {
-  const double theta = deg2rad(degrees);
+Vector2<T> rotate(const Vector2<T>& v, const double deg) {
+  const double theta = degrees(deg);
 
   const double cs = cos(theta);
   const double sn = sin(theta);
